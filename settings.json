@@ -13,18 +13,29 @@
     "calt": false
   },
   "buffer_font_size": 16,
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
   "vim_mode": false,
   "assistant": {
     "version": "2",
     "default_model": {
-      "provider": "google",
-      "model": "gemini-2.0-pro-exp"
+      "provider": "openai",
+      "model": "gpt-4o"
     }
   },
   "languages": {
     "Terraform": {
       "format_on_save": "on",
-      "formatter": "language_server"
+      "formatter": {
+        "external": {
+          "command": "terraform",
+          "arguments": [
+            "fmt",
+            "-"
+          ]
+        }
+      }
     }
   },
   "format_on_save": "off",
@@ -39,6 +50,7 @@
     }
   },
   "experimental.theme_overrides": {
-    "terminal.ansi.black": "#27aa27"
+    "terminal.ansi.black": "#27aa27",
+    "terminal.ansi.bright_green": "#645c54"
   }
 }
