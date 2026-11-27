@@ -1,56 +1,76 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
 {
-  "theme": "Gruvbox Dark",
+  "vim_mode": false,
   "buffer_font_features": {
-    // Disable ligatures:
     "calt": false
   },
-  "buffer_font_size": 16,
-  "features": {
-    "edit_prediction_provider": "copilot"
+  "terminal": {
+    "font_size": 16.0
   },
-  "vim_mode": false,
-  "assistant": {
-    "version": "2",
+  "agent": {
     "default_model": {
-      "provider": "openai",
-      "model": "gpt-4o"
+      "enable_thinking": true,
+      "provider": "copilot_chat",
+      "effort": "high",
+      "model": "claude-opus-5.5"
+    },
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "cli_default_open_behavior": "existing_window",
+  "theme": {
+    "mode": "system",
+    "light": "Gruvbox Dark",
+    "dark": "Gruvbox Dark"
+  },
+  "edit_predictions": {
+    "provider": "copilot"
+  },
+  "agent_servers": {
+    "github-copilot-cli": {
+      "favorite_config_option_values": {
+        "model": [
+          "auto"
+        ],
+        "mode": [
+          "https://agentclientprotocol.com/protocol/session-modes#agent"
+        ]
+      },
+      "default_config_options": {
+        "model": "auto",
+        "agent": "hackimator",
+        "mode": "https://agentclientprotocol.com/protocol/session-modes#agent"
+      },
+      "type": "registry"
     }
   },
-  "languages": {
-    "Terraform": {
-      "format_on_save": "on",
-      "formatter": {
-        "external": {
-          "command": "terraform",
-          "arguments": [
-            "fmt",
-            "-"
-          ]
-        }
+  "context_servers": {
+    "aws-mcp": {
+      "enabled": true,
+      "command": "/Users/plwagner/.local/bin/uvx",
+      "args": [
+        "--python",
+        "3.12",
+        "mcp-proxy-for-aws@latest",
+        "https://aws-mcp.us-east-1.api.aws/mcp",
+        "--metadata",
+        "INSTALL_SOURCE=aws-cli"
+      ],
+      "env": {
+        "AWS_MCP_PROXY_PROFILES": "sandbox nuglif_dev nuglif_main shared_services security collection lapresse_bi redaction app_mobile_prod lpp_prod recovery salesforce salesforce_admin main lpinfra lpbackup lpvault"
       }
+    },
+    "CircleCI": {
+      "enabled": false,
+      "remote": false,
+      "command": "/opt/homebrew/bin/circleci",
+      "args": [
+        "mcp",
+        "start"
+      ]
+    },
+    "atlassian": {
+      "enabled": true,
+      "url": "https://mcp.atlassian.com/v1/mcp/authv2"
     }
-  },
-  "format_on_save": "off",
-  "formatter": "auto",
-  "lsp": {
-    "terraform-ls": {
-      "initialization_options": {
-        "experimentalFeatures": {
-          "prefillRequiredFields": true
-        }
-      }
-    }
-  },
-  "experimental.theme_overrides": {
-    "terminal.ansi.black": "#27aa27",
-    "terminal.ansi.bright_green": "#645c54"
   }
 }
